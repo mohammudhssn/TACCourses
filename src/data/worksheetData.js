@@ -1,0 +1,110 @@
+export const worksheetSteps = [
+  {
+    id: "ideal",
+    num: 1,
+    title: "What Does Your Ideal Practice Look Like?",
+    subtitle: "Not what is realistic. Not what is expected. What would you actually design?",
+    fields: [
+      {
+        id: "idealWeek",
+        label: "Describe your ideal work week.",
+        hint: "How many days? What hours? Call or no call? What case types?",
+        type: "textarea",
+      },
+      {
+        id: "idealLocation",
+        label: "Where do you want to live and work?",
+        hint: "Are you willing to travel, and if so — how far and how often?",
+        type: "textarea",
+      },
+      {
+        id: "incomeGoal",
+        label: "What is your income goal?",
+        hint: "Not your current salary. The number that would make you feel like your career is working.",
+        type: "textarea",
+      },
+    ],
+  },
+  {
+    id: "priorities",
+    num: 2,
+    title: "Rank Your Priorities",
+    subtitle: "Rank 1-8 in order of personal importance. Score your current role honestly from 1-10.",
+    fields: null,
+    priorities: [
+      { id: "income", label: "Income", desc: "Earning at or near my ceiling" },
+      { id: "schedule", label: "Schedule control", desc: "Working when and how I choose" },
+      { id: "variety", label: "Clinical variety", desc: "Diverse cases, settings, patient populations" },
+      { id: "stability", label: "Stability", desc: "Predictable income, known schedule, established team" },
+      { id: "location", label: "Location", desc: "Living where I actually want to live" },
+      { id: "growth", label: "Professional growth", desc: "Expanding skills, staying sharp" },
+      { id: "community", label: "Community", desc: "Working with a consistent team over time" },
+      { id: "simplicity", label: "Simplicity", desc: "Minimal administrative and financial burden" },
+    ],
+  },
+  {
+    id: "w2value",
+    num: 3,
+    title: "What Does W-2 Actually Give You?",
+    subtitle: "List what you would be giving up. Be specific and honest — not fearful.",
+    fields: [
+      {
+        id: "w2value",
+        label: "What do you genuinely value about your current W-2 arrangement?",
+        hint: "Not what you fear losing — what you actually value.",
+        type: "textarea",
+      },
+      {
+        id: "w2hypothetical",
+        label: "If your benefits, schedule, and team were identical but you were earning $60,000 more per year — would you still choose W-2?",
+        hint: null,
+        type: "textarea",
+      },
+    ],
+  },
+  {
+    id: "cost",
+    num: 4,
+    title: "The Cost of Simplicity",
+    subtitle: "Every choice has a price. This is the price of staying.",
+    fields: null,
+    comparisonRows: [
+      { label: "Annual Gross Earnings", w2: "", loc: "" },
+      { label: "Retirement Contributions", w2: "", loc: "" },
+      { label: "Health Insurance (your cost)", w2: "", loc: "" },
+      { label: "Estimated Annual Taxes", w2: "", loc: "" },
+      { label: "Effective Take-Home (est.)", w2: "", loc: "" },
+      { label: "20-Year Projected Gap", w2: "Baseline", loc: "+$3.7M (est.)" },
+    ],
+  },
+  {
+    id: "conclusion",
+    num: 5,
+    title: "Your Honest Conclusion",
+    subtitle: "This is yours. No one else needs to see it.",
+    fields: [
+      {
+        id: "realReason",
+        label: "What is the real reason you have not made a change yet?",
+        hint: "Fear, logistics, another person's expectations, financial dependency, something else?",
+        type: "textarea",
+      },
+      {
+        id: "readyCondition",
+        label: "What would need to be true for you to feel ready to move in the next 12 months?",
+        hint: null,
+        type: "textarea",
+      },
+    ],
+    conclusionOptions: [
+      { id: "different-w2", label: "A different W-2 role" },
+      { id: "hybrid", label: "Hybrid W-2 + locums" },
+      { id: "full-1099", label: "Full 1099 / locums practice" },
+    ],
+    extraFields: [
+      { id: "nonNegotiable", label: "My one non-negotiable:", type: "text" },
+      { id: "biggestConcern", label: "My biggest unresolved concern:", type: "text" },
+      { id: "targetDate", label: "My target date to make a decision or take action:", type: "text" },
+    ],
+  },
+];

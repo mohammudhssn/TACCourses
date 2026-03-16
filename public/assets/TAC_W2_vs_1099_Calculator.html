@@ -1,0 +1,277 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:transparent}
+.wrap{padding:1.5rem 0;max-width:780px;margin:0 auto}
+.brand-header{background:#044C60;border-radius:8px 8px 0 0;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
+.brand-header h1{color:#A7D7DA;font-size:13px;font-weight:500;letter-spacing:.04em}
+.brand-header .logo{color:#EFB023;font-size:22px;font-weight:500}
+.brand-subtitle{background:#2F6A7B;padding:.5rem 1.5rem;border-bottom:3px solid #EFB023}
+.brand-subtitle p{color:#fff;font-size:15px;font-weight:500}
+.body-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-top:none;border-radius:0 0 8px 8px;padding:1.5rem}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.section-label{font-size:11px;font-weight:500;color:var(--color-text-secondary);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem;padding-bottom:.4rem;border-bottom:0.5px solid var(--color-border-tertiary)}
+.field{margin-bottom:1rem}
+.field label{display:block;font-size:13px;color:var(--color-text-secondary);margin-bottom:.3rem}
+.field input[type=number]{width:100%;padding:.4rem .6rem;font-size:15px;border:0.5px solid var(--color-border-secondary);border-radius:6px;background:var(--color-background-secondary);color:var(--color-text-primary)}
+.field input[type=number]:focus{outline:none;box-shadow:0 0 0 2px #A7D7DA40}
+.field .hint{font-size:11px;color:var(--color-text-tertiary);margin-top:.2rem}
+.toggle-row{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:var(--color-background-secondary);border-radius:6px;margin:.5rem 0 1rem;border:0.5px solid var(--color-border-tertiary)}
+.toggle-row label{font-size:14px;color:var(--color-text-primary);flex:1}
+.toggle-row .badge{font-size:11px;padding:2px 8px;border-radius:4px;background:#A7D7DA20;color:#2F6A7B;font-weight:500}
+.toggle{position:relative;width:40px;height:22px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.slider-pill{position:absolute;cursor:pointer;inset:0;background:var(--color-border-secondary);border-radius:22px;transition:.2s}
+.slider-pill:before{content:"";position:absolute;height:16px;width:16px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.2s}
+input:checked+.slider-pill{background:#044C60}
+input:checked+.slider-pill:before{transform:translateX(18px)}
+.divider{height:0.5px;background:var(--color-border-tertiary);margin:1.25rem 0}
+.results-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-top:.5rem}
+.result-card{padding:1rem;border-radius:8px;border:0.5px solid var(--color-border-tertiary)}
+.result-card.primary{background:#044C60;border-color:#044C60}
+.result-card.accent{background:#EFB02310;border-color:#EFB023}
+.result-card.danger{background:#C93A3A10;border-color:#C93A3A80}
+.rc-label{font-size:11px;font-weight:500;letter-spacing:.04em;margin-bottom:.3rem}
+.result-card.primary .rc-label{color:#A7D7DA}
+.result-card.accent .rc-label{color:#8B6500}
+.result-card.danger .rc-label{color:#C93A3A}
+.rc-val{font-size:28px;font-weight:500;line-height:1.1}
+.result-card.primary .rc-val{color:#EFB023}
+.result-card.accent .rc-val{color:#044C60}
+.result-card.danger .rc-val{color:#C93A3A}
+.rc-sub{font-size:12px;margin-top:.3rem}
+.result-card.primary .rc-sub{color:#A7D7DA90}
+.result-card.accent .rc-sub{color:#8B650099}
+.result-card.danger .rc-sub{color:#C93A3A80}
+.breakdown{margin-top:1.25rem;background:var(--color-background-secondary);border-radius:6px;padding:1rem;border:0.5px solid var(--color-border-tertiary)}
+.breakdown-title{font-size:12px;font-weight:500;color:var(--color-text-secondary);margin-bottom:.75rem}
+.breakdown-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.brow{display:contents}
+.brow .bk,.brow .bv{font-size:13px;padding:4px 0;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-secondary)}
+.brow .bk{color:var(--color-text-tertiary)}
+.brow .bv{text-align:right;font-variant-numeric:tabular-nums}
+.brow.total .bk,.brow.total .bv{color:var(--color-text-primary);font-weight:500;border-bottom:none;padding-top:8px}
+.insight{margin-top:1rem;padding:.75rem 1rem;border-radius:6px;border-left:3px solid #A7D7DA;background:#044C6008;font-size:13px;color:var(--color-text-secondary);line-height:1.6}
+.scorp-note{margin-top:.5rem;padding:.5rem .75rem;border-radius:6px;background:#EFB02312;font-size:12px;color:#8B6500;display:none}
+.scorp-note.visible{display:block}
+</style>
+
+<div class="wrap">
+  <div class="brand-header">
+    <h1>The Anesthesia Collective &nbsp;·&nbsp; W-2 vs. 1099 Compensation Calculator</h1>
+    <div class="logo">TAC</div>
+  </div>
+  <div class="brand-subtitle"><p>Course 01: The Mindset Shift &nbsp;—&nbsp; What does your W-2 actually cost you?</p></div>
+  <div class="body-card">
+
+    <div class="two-col">
+      <div>
+        <div class="section-label">Your W-2 details</div>
+        <div class="field">
+          <label>Annual base salary ($)</label>
+          <input type="number" id="salary" value="220000" step="5000">
+        </div>
+        <div class="field">
+          <label>Employer 401(k) match (%)</label>
+          <input type="number" id="match" value="4" step="0.5" min="0" max="10">
+          <div class="hint">Typically 3–6% at hospital systems</div>
+        </div>
+        <div class="field">
+          <label>Your health insurance cost ($/yr)</label>
+          <input type="number" id="health" value="3600" step="200">
+          <div class="hint">Your share after employer subsidy</div>
+        </div>
+        <div class="field">
+          <label>Employer-paid PTO weeks</label>
+          <input type="number" id="pto" value="4" step="1" min="0" max="12">
+        </div>
+        <div class="field">
+          <label>CME + license stipend ($/yr)</label>
+          <input type="number" id="cme" value="3000" step="500">
+        </div>
+        <div class="field">
+          <label>Malpractice value ($/yr)</label>
+          <input type="number" id="mal" value="4000" step="500">
+          <div class="hint">Estimated annual premium if you paid it</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Tax and structure</div>
+        <div class="field">
+          <label>Federal effective tax bracket (%)</label>
+          <input type="number" id="taxrate" value="32" step="1" min="22" max="37">
+          <div class="hint">Most CRNAs file at 32–35%</div>
+        </div>
+        <div class="field">
+          <label>Average clinical hours per week</label>
+          <input type="number" id="hours" value="40" step="2" min="20" max="60">
+        </div>
+        <div class="field">
+          <label>Target locum hourly rate ($/hr)</label>
+          <input type="number" id="target" value="200" step="5">
+          <div class="hint">$150–$200 is the typical market range</div>
+        </div>
+
+        <div class="section-label" style="margin-top:1rem">1099 structure</div>
+        <div class="toggle-row">
+          <label>S-Corp election<br><span style="font-size:12px;color:var(--color-text-tertiary)">Reduces self-employment tax via salary + distributions</span></label>
+          <span class="badge">Recommended</span>
+          <label class="toggle">
+            <input type="checkbox" id="scorp" checked>
+            <span class="slider-pill"></span>
+          </label>
+        </div>
+        <div class="scorp-note visible" id="scorpNote">S-Corp sets ~40% as W-2 salary, 60% as distributions. Saves ~$12,000–$18,000/yr in SE tax at this income level.</div>
+        <div style="margin-top:.75rem">
+          <div class="toggle-row">
+            <label>Sign-on bonus repayment<br><span style="font-size:12px;color:var(--color-text-tertiary)">Factor in clawback cost if leaving early</span></label>
+            <label class="toggle">
+              <input type="checkbox" id="clawback">
+              <span class="slider-pill"></span>
+            </label>
+          </div>
+          <div class="field" id="clawbackField" style="display:none">
+            <label>Clawback amount ($)</label>
+            <input type="number" id="clawbackAmt" value="30000" step="5000">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="section-label">Your results</div>
+
+    <div class="results-grid">
+      <div class="result-card primary">
+        <div class="rc-label">Break-even rate</div>
+        <div class="rc-val" id="rBreakeven">—</div>
+        <div class="rc-sub" id="rBEsub">Minimum to match your W-2</div>
+      </div>
+      <div class="result-card accent">
+        <div class="rc-label">Annual gain at $<span id="rTargetLabel">200</span>/hr</div>
+        <div class="rc-val" id="rAnnualGain">—</div>
+        <div class="rc-sub" id="rGainSub">More per year vs. your W-2</div>
+      </div>
+      <div class="result-card danger">
+        <div class="rc-label">20-year opportunity cost</div>
+        <div class="rc-val" id="r20yr">—</div>
+        <div class="rc-sub">If you stay W-2 at current rate</div>
+      </div>
+    </div>
+
+    <div class="breakdown">
+      <div class="breakdown-title">How your W-2 true compensation is calculated</div>
+      <div class="breakdown-grid">
+        <div class="brow"><span class="bk">Base salary</span><span class="bv" id="bSalary">—</span></div>
+        <div class="brow"><span class="bk">401(k) match</span><span class="bv" id="b401k">—</span></div>
+        <div class="brow"><span class="bk">Health premium (employer share)</span><span class="bv" id="bHealth">—</span></div>
+        <div class="brow"><span class="bk">Malpractice coverage</span><span class="bv" id="bMal">—</span></div>
+        <div class="brow"><span class="bk">CME + licensure stipend</span><span class="bv" id="bCme">—</span></div>
+        <div class="brow"><span class="bk">PTO value (paid weeks baked in)</span><span class="bv" id="bPto">—</span></div>
+        <div class="brow"><span class="bk">Employer FICA half (7.65%)</span><span class="bv" id="bFica">—</span></div>
+        <div class="brow total"><span class="bk">Total true W-2 compensation</span><span class="bv" id="bTotal">—</span></div>
+        <div class="brow total"><span class="bk">Break-even hourly (1099)</span><span class="bv" id="bBEhourly">—</span></div>
+      </div>
+    </div>
+
+    <div class="insight" id="insight">Enter your details above to see the full picture.</div>
+
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const fmt = n => '$' + Math.round(n).toLocaleString();
+const fmthr = n => '$' + n.toFixed(0) + '/hr';
+
+function calc() {
+  const salary   = +$('salary').value   || 220000;
+  const matchPct = +$('match').value    || 4;
+  const healthOop= +$('health').value   || 3600;
+  const ptoWks   = +$('pto').value      || 4;
+  const cme      = +$('cme').value      || 3000;
+  const mal      = +$('mal').value      || 4000;
+  const taxRate  = (+$('taxrate').value || 32) / 100;
+  const hrs      = +$('hours').value    || 40;
+  const targetHr = +$('target').value   || 200;
+  const useSCorp = $('scorp').checked;
+  const hasClawback = $('clawback').checked;
+  const clawbackAmt = hasClawback ? (+$('clawbackAmt').value || 0) : 0;
+
+  $('scorpNote').classList.toggle('visible', useSCorp);
+
+  const employerHealthShare = healthOop * 2.5;
+  const matchVal  = salary * matchPct / 100;
+  const ficaHalf  = salary * 0.0765;
+  const ptoRate   = salary / 52;
+  const ptoVal    = ptoRate * ptoWks;
+
+  const totalW2Comp = salary + matchVal + employerHealthShare + mal + cme + ptoVal + ficaHalf;
+
+  const workHrsPerYear = hrs * (52 - ptoWks);
+
+  let seRate = 0.153;
+  let seDesc = 'Self-employment tax at full 15.3%';
+  if (useSCorp) {
+    seRate = 0.0765;
+    seDesc = 'S-Corp: SE tax ~7.65% (salary portion only)';
+  }
+
+  const seTaxBurden = totalW2Comp * seRate;
+  const dedSavings  = (healthOop + mal + cme) * 0.75;
+  const netCostAdd  = seTaxBurden - dedSavings;
+
+  const breakEvenTotal = totalW2Comp + netCostAdd;
+  const breakEvenHr    = breakEvenTotal / workHrsPerYear;
+
+  const targetAnnual   = targetHr * workHrsPerYear;
+  const w2NetTarget    = totalW2Comp * (1 - taxRate);
+  const loc1099Gross   = targetAnnual - (useSCorp ? targetAnnual * 0.08 : targetAnnual * 0.153);
+  const loc1099Deduct  = healthOop + mal + cme + (useSCorp ? targetAnnual * 0.265 : 0);
+  const loc1099Taxable = Math.max(0, loc1099Gross - loc1099Deduct);
+  const loc1099Net     = loc1099Taxable * (1 - taxRate);
+  const annualGain     = loc1099Net - w2NetTarget;
+  const adjAnnualGain  = annualGain - (clawbackAmt / 3);
+  const gain20yr       = adjAnnualGain * 20 * 1.04;
+
+  $('rBreakeven').textContent   = fmthr(breakEvenHr);
+  $('rBEsub').textContent       = 'Min to match your W-2 (all-in)';
+  $('rTargetLabel').textContent = targetHr;
+  $('rAnnualGain').textContent  = adjAnnualGain >= 0 ? fmt(adjAnnualGain) : '-' + fmt(Math.abs(adjAnnualGain));
+  $('rGainSub').textContent     = adjAnnualGain >= 0 ? 'More per year vs. your W-2 (after-tax est.)' : 'Less than W-2 at this rate — raise your target';
+  $('r20yr').textContent        = gain20yr >= 0 ? fmt(gain20yr) : 'Rate too low';
+
+  $('bSalary').textContent  = fmt(salary);
+  $('b401k').textContent    = fmt(matchVal);
+  $('bHealth').textContent  = fmt(employerHealthShare);
+  $('bMal').textContent     = fmt(mal);
+  $('bCme').textContent     = fmt(cme);
+  $('bPto').textContent     = fmt(ptoVal);
+  $('bFica').textContent    = fmt(ficaHalf);
+  $('bTotal').textContent   = fmt(totalW2Comp);
+  $('bBEhourly').textContent= fmthr(breakEvenHr);
+
+  let msg = '';
+  if (targetHr < breakEvenHr) {
+    msg = 'Your target rate of ' + fmthr(targetHr) + ' is below your break-even of ' + fmthr(breakEvenHr) + '. At that rate you would be worse off than your W-2. You need at least ' + fmthr(Math.ceil(breakEvenHr)) + ' to come out ahead.';
+  } else if (adjAnnualGain > 50000) {
+    msg = 'At ' + fmthr(targetHr) + ' you would clear ' + fmt(adjAnnualGain) + ' more per year than your W-2 in after-tax income — without accounting for the additional ' + fmt(Math.min(69000, targetAnnual * 0.18) - matchVal) + ' more you could shelter in a Solo 401(k) vs. your current employer match.';
+  } else {
+    msg = 'At ' + fmthr(targetHr) + ' your 1099 income is ' + fmt(adjAnnualGain) + ' ahead of your W-2 after-tax. The S-Corp election' + (useSCorp ? ' (currently on)' : ' (currently off — turn it on)') + ' saves a significant portion of that gap by reducing self-employment tax.';
+  }
+  if (hasClawback && clawbackAmt > 0) {
+    msg += ' Note: your sign-on bonus clawback of ' + fmt(clawbackAmt) + ' is spread over 3 years in this estimate.';
+  }
+  $('insight').textContent = msg;
+}
+
+['salary','match','health','pto','cme','mal','taxrate','hours','target','clawbackAmt'].forEach(id => {
+  $(id).addEventListener('input', calc);
+});
+$('scorp').addEventListener('change', calc);
+$('clawback').addEventListener('change', function() {
+  $('clawbackField').style.display = this.checked ? 'block' : 'none';
+  calc();
+});
+calc();
+</script>

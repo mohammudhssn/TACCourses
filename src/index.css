@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar for sidebar */
+.sidebar-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15);
+  border-radius: 4px;
+}
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* Custom scrollbar for content */
+.content-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.content-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.content-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.1);
+  border-radius: 6px;
+}
+.content-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.2);
+}
+
+/* Input focus states */
+input[type="number"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(167, 215, 218, 0.4);
+  border-color: #A7D7DA;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Textarea styles */
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(167, 215, 218, 0.4);
+  border-color: #A7D7DA;
+}
+
+/* Range slider custom styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: #D9E4E7;
+  border-radius: 3px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #044C60;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+/* Smooth transitions */
+.lesson-transition {
+  animation: fadeSlideIn 0.3s ease-out;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Checkbox animation */
+@keyframes checkPop {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+.check-pop {
+  animation: checkPop 0.3s ease-out;
+}
+
+/* Reading progress bar */
+.reading-progress {
+  transition: width 0.1s linear;
+}
